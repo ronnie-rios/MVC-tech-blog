@@ -28,7 +28,7 @@ router.get('/', withAuth, (req, res) => {
             posts, 
             loggedIn: req.session.loggedIn,
             title: 'dashboard',
-            layout: 'dashboard-main'
+            layout: 'main'
         });
     })
     .catch(err => {
@@ -75,3 +75,5 @@ router.get('/edit/:id', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
+
+module.exports = router;
