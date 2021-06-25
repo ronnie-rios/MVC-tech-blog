@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ['id', 'title', 'post_url', 'created_at']
+        attributes: ['id', 'title', 'post_content', 'created_at']
       },
       {
         model: Comment,
@@ -49,7 +49,6 @@ router.post('/', (req, res) => {
   // expects {username: 'Lernantino',  password: 'password1234'}
   User.create({
     username: req.body.username,
-    
     password: req.body.password
   })
   .then((dbUserData) => {
@@ -74,7 +73,7 @@ router.post('/login', (req, res) => {
     }
   }).then(dbUserData => {
     if (!dbUserData) {
-      res.status(400).json({ message: 'No user with that email address!' });
+      res.status(400).json({ message: 'No user with that username!' });
       return;
     }
 
@@ -112,7 +111,7 @@ router.put('/:id', (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(404).json(err);
     });
 });
 
